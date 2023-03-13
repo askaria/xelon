@@ -1,0 +1,546 @@
+/*
+	Theme Name:   Xelon
+	Description:  Тестовый сайт
+	Author:       Askaria
+	Version:      1.0
+*/
+
+/*--------------------------------------------------------------
+# Normalize
+--------------------------------------------------------------*/
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+html {
+	line-height: 1.15;
+	-webkit-text-size-adjust: 100%;
+}
+
+body {
+	margin: 0;
+}
+
+hr {
+	box-sizing: content-box;
+	height: 0;
+	overflow: visible;
+	border: 0;
+	border-top-width: 1px;
+	border-top-style: solid;
+	border-top-color: #dfe6e9;
+}
+
+a {
+	background-color: transparent;
+}
+
+a:focus {
+	outline: unset;
+}
+
+b,
+strong {
+	font-weight: 700;
+}
+
+small {
+	font-size: 14px;
+}
+
+main img {
+	max-width: 100%;
+	height: auto;
+	border-style: none;
+}
+
+button,
+input {
+	font-family: inherit;
+	font-size: 100%;
+	line-height: 1.15;
+	margin: 0;
+}
+
+button,
+input {
+	overflow: visible;
+}
+
+button {
+	text-transform: none;
+}
+
+button {
+	-webkit-appearance: button;
+}
+
+button::-moz-focus-inner {
+	border-style: none;
+	padding: 0;
+}
+
+button:-moz-focusring {
+	outline: 1px dotted #fff;
+}
+
+[type="search"] {
+	-webkit-appearance: textfield;
+	outline-offset: -2px;
+}
+
+[type="search"]::-webkit-search-decoration {
+	-webkit-appearance: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+		scroll-behavior: auto !important;
+	}
+}
+
+.screen-reader-text,
+.screen-reader-text span,
+.screen-reader-shortcut {
+	position: absolute !important;
+	clip: rect(0, 0, 0, 0);
+	height: 1px;
+	width: 1px;
+	border: 0;
+	overflow: hidden;
+	color: #333;
+	background: #fff;
+}
+
+svg:not(:root),
+symbol {
+	overflow: hidden;
+}
+
+/*--------------------------------------------------------------
+# Fonts
+--------------------------------------------------------------*/
+/* montserrat-300 - cyrillic_latin */
+@font-face {
+	font-display: swap;
+	font-family: 'Montserrat';
+	font-style: normal;
+	font-weight: 300;
+	src: url('fonts/montserrat-v25-cyrillic_latin-300.woff2') format('woff2'),
+		url('fonts/montserrat-v25-cyrillic_latin-300.woff') format('woff'),
+		url('fonts/montserrat-v25-cyrillic_latin-300.ttf') format('truetype'),
+		url('fonts/montserrat-v25-cyrillic_latin-300.svg#Montserrat') format('svg');
+}
+
+/* montserrat-regular - cyrillic_latin */
+@font-face {
+	font-display: swap;
+	font-family: 'Montserrat';
+	font-style: normal;
+	font-weight: 400;
+	src: url('fonts/montserrat-v25-cyrillic_latin-regular.woff2') format('woff2'),
+		url('fonts/montserrat-v25-cyrillic_latin-regular.woff') format('woff'),
+		url('fonts/montserrat-v25-cyrillic_latin-regular.ttf') format('truetype'),
+		url('fonts/montserrat-v25-cyrillic_latin-regular.svg#Montserrat') format('svg');
+}
+
+/*--------------------------------------------------------------
+# General
+--------------------------------------------------------------*/
+
+:root {
+	--doc-height: 100vh;
+}
+
+body {
+	position: relative;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 300;
+	color: #fff;
+	letter-spacing: 0.05em;
+	background-color: #000;
+	overflow: hidden;
+	scroll-behavior: smooth;
+}
+
+a {
+	transition: .3s;
+}
+
+/*--------------------------------------------------------------
+# Header
+--------------------------------------------------------------*/
+
+.header {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 10;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 30px 80px;
+	width: 100%;
+}
+
+@media screen and (max-width: 980px) {
+	.header {
+		padding: 20px;
+	}
+}
+
+/* ## Header logo */
+
+.text_hide {
+	position: absolute;
+	margin: 0;
+	height: 1px;
+	width: 1px;
+	overflow: hidden;
+	clip: rect(1px 1px 1px 1px);
+	clip: rect(1px, 1px, 1px, 1px);
+}
+
+.logo_s {
+	width: 166px;
+}
+
+.logo_hide {
+	opacity: 0;
+	transition: opacity .3s;
+}
+
+.menu-view .logo_hide {
+	opacity: 1;
+}
+
+@media screen and (max-width: 980px) {
+	.header__logo {
+		width: 100px;
+	}
+}
+
+/* ## Header burger */
+
+.header__burger {
+	--width: 50px;
+	--padding: 2px;
+	margin-left: auto;
+	padding: var(--padding);
+	height: var(--width);
+	width: var(--width);
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	cursor: pointer;
+}
+
+.header__burger>span {
+	--height: 2px;
+	position: relative;
+	display: flex;
+	justify-content: flex-end;
+	width: 50%;
+	height: var(--height);
+	background-color: #fff;
+	transition: all 0.4s ease;
+}
+
+.header__burger>span:before,
+.header__burger>span:after {
+	content: '';
+	position: absolute;
+	width: calc(var(--width) - var(--padding) * 2);
+	height: var(--height);
+	background-color: #fff;
+	transition: all 0.4s ease;
+}
+
+.header__burger>span:before {
+	top: -7px;
+}
+
+.header__burger>span:after {
+	top: 7px;
+}
+
+@media screen and (max-width: 980px) {
+	.header__burger {
+		--width: 30px;
+		--padding: 1px;
+	}
+
+	.header__burger>span {
+		--height: 1px;
+	}
+}
+
+/* ### Header burger cross */
+
+.menu-view .header__burger>span {
+	background-color: transparent;
+}
+
+.menu-view .header__burger>span:before {
+	top: 0;
+	transform: rotate(45deg);
+}
+
+.menu-view .header__burger>span:after {
+	top: 0;
+	transform: rotate(135deg);
+}
+
+/*--------------------------------------------------------------
+# Blocks
+--------------------------------------------------------------*/
+
+.site-main {
+	position: relative;
+	transition: 1s cubic-bezier(0.5, 0, 0.5, 1);
+	overflow: hidden;
+	/* height: var(--doc-height);
+	overflow-y: scroll;
+	scroll-snap-type: mandatory;
+	scroll-snap-points-y: repeat(300px);
+	scroll-snap-type: y mandatory; */
+	-webkit-overflow-scrolling: touch;
+}
+
+.disable_scrollbars {
+	scrollbar-width: none;
+	-ms-overflow-style: none;
+}
+
+.disable_scrollbars::-webkit-scrollbar {
+	background: transparent;
+	width: 0px;
+}
+
+.section {
+	position: relative;
+	z-index: 9;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 40px 80px;
+	height: var(--doc-height);
+	overflow: hidden;
+	/* scroll-snap-align: start; */
+}
+
+@media screen and (max-width: 980px) {
+	.section {
+		padding: 20px;
+	}
+}
+
+/* ## Main section */
+
+.main {
+	flex-direction: column;
+}
+
+.main>* {
+	opacity: 0;
+	transition: opacity .3s;
+}
+
+.main-view .main>* {
+	opacity: 1;
+}
+
+.main .main__bg {
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: -1;
+	width: 100%;
+	height: 100%;
+}
+
+.main .main__bg:before {
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.6);
+}
+
+.main .main__bg picture img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: center;
+}
+
+/* ### Main section logo */
+
+.logo_m {
+	width: 500px;
+}
+
+@media screen and (max-width: 980px) {
+	.logo_m {
+		width: 200px;
+	}
+}
+
+/* ### Main section scroll down text */
+
+.main__scroll {
+	position: absolute;
+	bottom: 80px;
+	font-size: 16px;
+	color: #fff;
+	font-weight: 400;
+	text-transform: uppercase;
+}
+
+.main__scroll:after {
+	content: '';
+	position: absolute;
+	bottom: -80px;
+	left: 50%;
+	height: 60px;
+	width: 1px;
+	background-color: #fff;
+}
+
+@media screen and (max-width: 980px) {
+	.main__scroll {
+		bottom: 40px;
+	}
+
+	.main__scroll:after {
+		bottom: -40px;
+		height: 30px;
+	}
+}
+
+/* ## Menu section */
+
+.menu>* {
+	opacity: 0;
+	transition: opacity .3s;
+}
+
+.menu-view .menu>* {
+	opacity: 1;
+}
+
+.menu ul {
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	text-align: center;
+	list-style: none;
+}
+
+.menu li:not(:last-child) {
+	margin-bottom: 35px;
+}
+
+.menu li a {
+	font-size: 42px;
+	color: #fff;
+	text-decoration: none;
+	text-transform: uppercase;
+	line-height: 1.2;
+}
+
+.menu li a:hover {
+	text-decoration: underline;
+}
+
+.menu .sub-menu {
+	display: none;
+}
+
+@media screen and (max-width: 980px) {
+	.menu li a {
+		font-size: 24px;
+	}
+}
+
+/*--------------------------------------------------------------
+# Footer
+--------------------------------------------------------------*/
+
+.footer {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	z-index: -1;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 40px 80px;
+	width: 100%;
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 1.25;
+	text-transform: uppercase;
+	opacity: 0;
+	transition: opacity .3s;
+}
+
+.menu-view .footer {
+	z-index: 10;
+	opacity: 1;
+}
+
+.footer>div {
+	flex: 1;
+}
+
+.footer__info {
+	color: #BCBCBC;
+	text-align: center;
+}
+
+.footer__copyright {
+	text-align: right;
+}
+
+@media screen and (max-width: 980px) {
+	.footer {
+		flex-wrap: wrap;
+		padding: 20px;
+		font-size: 12px;
+	}
+
+	.footer>div {
+		flex-basis: unset;
+	}
+
+	.footer__copyright {
+		order: 1;
+		text-align: left;
+	}
+
+	.footer__date {
+		order: 2;
+	}
+
+	.footer__info {
+		order: 3;
+		margin-top: 20px;
+		width: 100%;
+		text-align: left;
+	}
+}
